@@ -25,5 +25,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), name="robots"),
     path("sitemap.xml", serve, {"document_root": Path(__file__).resolve().parent.parent / "static", "path": "sitemap.xml"}, name="sitemap"),
+    path("logo.png", serve, {"document_root": Path(__file__).resolve().parent.parent / "static" / "img", "path": "logo.png"}, name="logo"),
     path("", include("main.urls")),
 ]
