@@ -21,6 +21,11 @@ class Plan(models.Model):
     )
     is_popular = models.BooleanField(default=False)
     cta_label = models.CharField(max_length=60, default="Get Started")
+    cta_url_type = models.CharField(
+        max_length=20, default="register",
+        choices=[("register", "Register"), ("billing", "Billing"), ("login", "Login")],
+        help_text="Which app URL this plan's button links to",
+    )
     order = models.PositiveIntegerField(default=0, help_text="Display order")
 
     class Meta:
@@ -122,4 +127,56 @@ class ContactInfo(models.Model):
     def load(cls):
         obj, _ = cls.objects.get_or_create(pk=1)
         return obj
+
+
+class SiteConfig(models.Model):
+    """Configurable app URLs and button labels (singleton-style)."""
+
+    app_base_url = models.URLField(
+        default="https://app.iluffy.in",
+        help_text="Base URL of the main application (no trailing slash)",
+    )
+    register_path = models.CharField(max_length=100, default="/register")
+    login_path = models.CharField(max_length=100, default="/login")
+    billing_path = models.CharField(max_length=100, default="/billing")
+    sample_report_url = models.CharField(
+        max_length=300, default="#",
+        help_text="URL for 'View Sample Report' button (use # as placeholder)",
+    )
+
+    # Customisable button labels
+    nav_login_label = models.CharField(max_length=60, default="Log in")
+    nav_cta_label = models.CharField(max_length=60, default="Analyze Now")
+    hero_cta_label = models.CharField(max_length=60, default="Start Analysis")
+    hero_secondary_label = models.CharField(max_length=60, default="Sample Report")
+    cta_primary_label = models.CharField(max_length=60, default="Get Started Free")
+    cta_secondary_label = models.CharField(max_length=60, default="View Pricing")
+
+    class Meta:
+        verbose_name = "Site Config"
+        verbose_name_plural = "Site Config"
+
+    def __str__(self):
+        return f"Site Config ({self.app_base_url})"
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def load(cls):
+        obj, _ = cls.objects.get_or_create(pk=1)
+        return obj
+
+    @property
+    def register_url(self):
+        return f"{self.app_base_url.rstrip('/')}{self.register_path}"
+
+    @property
+    def login_url(self):
+        return f"{self.app_base_url.rstrip('/')}{self.login_path}"
+
+    @property
+    def billing_url(self):
+        return f"{self.app_base_url.rstrip('/')}{self.billing_path}"
 

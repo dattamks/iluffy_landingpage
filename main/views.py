@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Plan, Testimonial, ContactSubmission, ContactInfo
+from .models import Plan, Testimonial, ContactSubmission, ContactInfo, SiteConfig
 
 
 def _common_context():
-    return {"contact_info": ContactInfo.load()}
+    site = SiteConfig.load()
+    return {
+        "contact_info": ContactInfo.load(),
+        "site": site,
+    }
 
 
 def index(request):
@@ -12,12 +16,17 @@ def index(request):
         return _handle_contact(request)
 
     ctx = _common_context()
+    site = ctx["site"]
     plans = list(Plan.objects.prefetch_related("features").all())
     # Attach base-plan features so higher-tier cards include them
     if plans:
         base_features = list(plans[0].features.all())
         for plan in plans[1:]:
             plan.base_features = base_features
+    # Resolve CTA URL for each plan
+    url_map = {"register": site.register_url, "billing": site.billing_url, "login": site.login_url}
+    for plan in plans:
+        plan.cta_url = url_map.get(plan.cta_url_type, site.register_url)
     ctx["plans"] = plans
     ctx["testimonials"] = Testimonial.objects.filter(is_active=True)
     return render(request, "main/index.html", ctx)

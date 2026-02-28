@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from main.models import Plan, PlanFeature, Testimonial, ContactInfo
+from main.models import Plan, PlanFeature, Testimonial, ContactInfo, SiteConfig
 
 
 class Command(BaseCommand):
@@ -9,6 +9,7 @@ class Command(BaseCommand):
         self._seed_plans()
         self._seed_testimonials()
         self._seed_contact_info()
+        self._seed_site_config()
         self.stdout.write(self.style.SUCCESS("Seed data loaded successfully."))
 
     def _seed_plans(self):
@@ -23,7 +24,8 @@ class Command(BaseCommand):
             monthly_price=0,
             annual_price=0,
             is_popular=False,
-            cta_label="Start Free Analysis",
+            cta_label="Get Started Free",
+            cta_url_type="register",
             order=1,
         )
         free_features = [
@@ -47,7 +49,8 @@ class Command(BaseCommand):
             annual_price=3990,           # ₹399/mo × 10
             annual_original_price=7188,  # ₹599/mo × 12
             is_popular=True,
-            cta_label="Upgrade to Pro",
+            cta_label="Be a Pro",
+            cta_url_type="billing",
             order=2,
         )
         pro_features = [
@@ -129,3 +132,16 @@ class Command(BaseCommand):
             },
         )
         self.stdout.write(self.style.SUCCESS("  ✓ Contact info seeded"))
+
+    def _seed_site_config(self):
+        SiteConfig.objects.get_or_create(
+            pk=1,
+            defaults={
+                "app_base_url": "https://app.iluffy.in",
+                "register_path": "/register",
+                "login_path": "/login",
+                "billing_path": "/billing",
+                "sample_report_url": "#",
+            },
+        )
+        self.stdout.write(self.style.SUCCESS("  ✓ Site config seeded"))

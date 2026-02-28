@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Plan, PlanFeature, Testimonial, ContactSubmission, ContactInfo
+from .models import Plan, PlanFeature, Testimonial, ContactSubmission, ContactInfo, SiteConfig
 
 
 class PlanFeatureInline(admin.TabularInline):
@@ -33,6 +33,20 @@ class ContactInfoAdmin(admin.ModelAdmin):
     # Singleton — hide add/delete
     def has_add_permission(self, request):
         return not ContactInfo.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+@admin.register(SiteConfig)
+class SiteConfigAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ("App URLs", {"fields": ["app_base_url", "register_path", "login_path", "billing_path", "sample_report_url"]}),
+        ("Button Labels", {"fields": ["nav_login_label", "nav_cta_label", "hero_cta_label", "hero_secondary_label", "cta_primary_label", "cta_secondary_label"]}),
+    ]
+
+    def has_add_permission(self, request):
+        return not SiteConfig.objects.exists()
 
     def has_delete_permission(self, request, obj=None):
         return False
