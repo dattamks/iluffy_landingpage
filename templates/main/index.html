@@ -1,0 +1,524 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <!-- ═══════════════════════════════════════════════════════════════════  HERO  ═══ -->
+  <section class="pt-20 pb-16 sm:pt-28 sm:pb-24 px-4 sm:px-6 relative overflow-hidden">
+    <!-- Gradient mesh background -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <div id="hero-orb" class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-br from-indigo-200/40 via-purple-100/30 to-transparent dark:from-indigo-950/30 dark:via-purple-950/15 dark:to-transparent rounded-full blur-3xl"></div>
+      <div class="absolute top-40 -right-20 w-[500px] h-[500px] bg-gradient-to-bl from-purple-200/20 to-transparent dark:from-purple-950/10 dark:to-transparent rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-32 left-1/4 w-[600px] h-[400px] bg-gradient-to-t from-blue-100/15 to-transparent dark:from-blue-950/10 dark:to-transparent rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Left text -->
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-2 bg-indigo-600/10 dark:bg-indigo-600/20 border border-indigo-500/30 rounded-full px-4 py-1.5 mb-8 animate-glow-pulse">
+          <svg class="h-3.5 w-3.5 text-indigo-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" />
+          </svg>
+          <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">Now in Public Beta</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-8 tracking-tight text-gray-900 dark:text-white">
+          Your Resume, <br />
+          Perfected by
+          <span class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">AI Intelligence.</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-lg leading-relaxed">
+          Upload your resume, provide a job description, and get an instant ATS compatibility score
+          with section-by-section feedback, keyword intelligence, and AI-rewritten bullet points.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#" class="bg-indigo-600 text-white px-8 py-3.5 rounded-xl text-base font-semibold flex items-center justify-center gap-2 group hover:bg-indigo-500 shadow-lg shadow-indigo-500/25 transition-all hover:shadow-xl hover:-translate-y-0.5">
+            Start Analysis
+            <svg class="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <a href="#process" class="px-8 py-3.5 rounded-xl text-base font-semibold border border-mist-400 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:bg-mist-50 dark:hover:bg-charcoal transition-all text-center">
+            Sample Report
+          </a>
+        </div>
+      </div>
+
+      <!-- Right — Interactive Report Preview -->
+      <div class="relative animate-float">
+        <div class="absolute -inset-4 rounded-2xl blur-2xl opacity-20 bg-gradient-to-br from-indigo-500 to-purple-500 dark:opacity-30"></div>
+        <div id="report-card" class="report-tilt relative p-1 rounded-xl border cursor-default" style="background:#d4d4da; border-color:#808088;">
+          <div class="rounded-lg overflow-hidden border shadow-2xl bg-white border-mist-300 dark:bg-jet dark:border-gray-800">
+            <!-- Window chrome -->
+            <div class="p-4 border-b flex items-center justify-between border-mist-200 bg-mist-50 dark:border-gray-800 dark:bg-gray-500/5">
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/30"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/30"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500/30"></div>
+              </div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">iLuffy Intel Dashboard</span>
+            </div>
+            <!-- Report content -->
+            <div class="p-6 sm:p-8">
+              <div class="flex justify-between items-end mb-6">
+                <div>
+                  <div class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-1">Overall Grade</div>
+                  <div class="text-5xl sm:text-6xl font-bold leading-none text-gray-900 dark:text-gray-100 animate-scale-in" style="animation-delay:300ms">A-</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">ATS Readiness</div>
+                  <div class="flex gap-1 justify-end">
+                    <div class="h-6 w-1.5 rounded-full bg-green-500 animate-bar-grow" style="animation-delay:500ms"></div>
+                    <div class="h-6 w-1.5 rounded-full bg-green-500 animate-bar-grow" style="animation-delay:620ms"></div>
+                    <div class="h-6 w-1.5 rounded-full bg-green-500 animate-bar-grow" style="animation-delay:740ms"></div>
+                    <div class="h-6 w-1.5 rounded-full bg-green-500 animate-bar-grow" style="animation-delay:860ms"></div>
+                    <div class="h-6 w-1.5 rounded-full bg-mist-300 dark:bg-gray-800 animate-bar-grow" style="animation-delay:980ms"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Summary -->
+              <div class="mb-5 p-3 rounded-lg text-xs leading-relaxed bg-indigo-50 border border-indigo-100 text-indigo-700 dark:bg-indigo-950/30 dark:border-indigo-900/50 dark:text-indigo-300">
+                <span class="font-semibold">AI Summary:</span> Strong technical foundation with clear project experience. Key gaps in cloud infrastructure keywords and quantified impact metrics reduce ATS match rate.
+              </div>
+
+              <div class="space-y-5">
+                <!-- Gaps -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-2">
+                      <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+                      Critical Gaps Found
+                    </span>
+                    <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">High Priority</span>
+                  </div>
+                  <div class="p-3 rounded border text-xs leading-relaxed italic bg-mist-50 border-mist-200 text-gray-600 dark:bg-charcoal dark:border-gray-800 dark:text-gray-400">
+                    "Missing core cloud keywords: <span class="text-indigo-600 dark:text-indigo-400 font-bold not-italic">Snowflake, Redshift</span>. Bullet points lack quantifiable ROI."
+                  </div>
+                </div>
+
+                <!-- AI Recommendation -->
+                <div class="pt-4 border-t border-mist-200 dark:border-gray-800">
+                  <div class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-2">
+                    <svg class="h-3 w-3 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+                    AI Recommendation
+                  </div>
+                  <div class="flex flex-col gap-2">
+                    <div class="text-xs line-through text-gray-400 dark:text-gray-600 italic">"Responsible for managing SQL databases..."</div>
+                    <div class="p-3 rounded text-xs font-medium border bg-green-50 border-green-200 text-green-700 dark:bg-green-500/5 dark:border-green-500/20 dark:text-green-400">
+                      "Architected complex SQL workflows, reducing query time by 45% and optimizing database performance for 10k+ users."
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════  SOCIAL PROOF STATS  ═══ -->
+  <section class="border-y border-gray-100 dark:border-gray-800 bg-mist-50/50 dark:bg-charcoal/30">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-bold text-indigo-600 dark:text-indigo-400">3<span class="text-xl sm:text-2xl">+</span></p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">ATS Systems Scored</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-bold text-indigo-600 dark:text-indigo-400">10<span class="text-xl sm:text-2xl">K+</span></p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Resumes Analyzed</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-bold text-indigo-600 dark:text-indigo-400">&lt; 30<span class="text-xl sm:text-2xl">s</span></p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Average Analysis</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-bold text-indigo-600 dark:text-indigo-400">90<span class="text-xl sm:text-2xl">%</span></p>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">User Satisfaction</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════  HOW IT WORKS  ═══ -->
+  <section id="process" class="scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div class="text-center mb-14">
+        <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">Simple Process</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">How It Works</h2>
+        <p class="text-gray-500 dark:text-gray-400 max-w-lg mx-auto">Three steps to a stronger resume. Takes less than a minute.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 relative">
+        <div class="hidden md:block absolute top-7 left-[calc(16.67%+28px)] right-[calc(16.67%+28px)] h-0.5 bg-gradient-to-r from-indigo-200 via-indigo-300 to-indigo-200 dark:from-indigo-800 dark:via-indigo-700 dark:to-indigo-800"></div>
+
+        <div class="text-center relative">
+          <div class="relative z-10 mx-auto w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-xl font-bold mb-5 shadow-lg shadow-indigo-500/25">1</div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Upload</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs mx-auto">Drop your resume PDF or select from your saved library, then provide the job description: paste text, enter a URL, or fill in job details.</p>
+        </div>
+        <div class="text-center relative">
+          <div class="relative z-10 mx-auto w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-xl font-bold mb-5 shadow-lg shadow-indigo-500/25">2</div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Analyze</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs mx-auto">Our AI engine scores and reviews every section in seconds across multiple ATS platforms.</p>
+        </div>
+        <div class="text-center relative">
+          <div class="relative z-10 mx-auto w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-xl font-bold mb-5 shadow-lg shadow-indigo-500/25">3</div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Improve</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs mx-auto">Apply targeted keyword additions, bullet rewrites, and formatting fixes to land more interviews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════  FEATURES  ═══ -->
+  <section id="intelligence" class="bg-mist-50 dark:bg-charcoal/30 border-y border-gray-100 dark:border-gray-800 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <!-- Left sticky column -->
+        <div class="lg:col-span-4 lg:sticky lg:top-28">
+          <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">Powerful Features</p>
+          <h2 class="text-3xl sm:text-4xl font-bold leading-[1.1] mb-6 text-gray-900 dark:text-white">Everything You Need <br/>to Stand Out</h2>
+          <p class="text-base sm:text-lg mb-8 leading-relaxed text-gray-500 dark:text-gray-400">Comprehensive AI analysis covering every aspect of your resume, across multiple ATS platforms.</p>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 text-sm">
+              <div class="w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center flex-shrink-0">
+                <svg class="h-3 w-3 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              </div>
+              <span class="text-gray-600 dark:text-gray-300">Linguistic Pattern Recognition</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <div class="w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center flex-shrink-0">
+                <svg class="h-3 w-3 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              </div>
+              <span class="text-gray-600 dark:text-gray-300">ATS System Simulations</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <div class="w-5 h-5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center flex-shrink-0">
+                <svg class="h-3 w-3 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              </div>
+              <span class="text-gray-600 dark:text-gray-300">Impact Metric Optimization</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right feature cards -->
+        <div class="lg:col-span-8 grid md:grid-cols-2 gap-5">
+          <!-- Semantic Gap Discovery -->
+          <div class="p-6 border rounded-2xl group hover:border-mist-400 dark:hover:border-indigo-800/50 hover:shadow-lg hover:shadow-indigo-500/5 transition-all bg-cream border-gray-100 dark:bg-graphite dark:border-slate-700/60">
+            <div class="mb-4 w-11 h-11 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+            </div>
+            <h4 class="text-base font-semibold mb-3 text-gray-900 dark:text-white">Semantic Gap Discovery</h4>
+            <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Our AI identifies implied skill requirements hidden within job descriptions that your resume currently lacks.</p>
+          </div>
+          <!-- Impact Rewriting -->
+          <div class="p-6 border rounded-2xl group hover:border-mist-400 dark:hover:border-indigo-800/50 hover:shadow-lg hover:shadow-indigo-500/5 transition-all bg-cream border-gray-100 dark:bg-graphite dark:border-slate-700/60">
+            <div class="mb-4 w-11 h-11 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+            </div>
+            <h4 class="text-base font-semibold mb-3 text-gray-900 dark:text-white">Impact Rewriting</h4>
+            <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Automatically transform generic job duties into data-driven achievements using industry-specific action verbs and metrics.</p>
+          </div>
+          <!-- ATS Simulation -->
+          <div class="p-6 border rounded-2xl group hover:border-mist-400 dark:hover:border-indigo-800/50 hover:shadow-lg hover:shadow-indigo-500/5 transition-all bg-cream border-gray-100 dark:bg-graphite dark:border-slate-700/60">
+            <div class="mb-4 w-11 h-11 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>
+            </div>
+            <h4 class="text-base font-semibold mb-3 text-gray-900 dark:text-white">ATS Simulation</h4>
+            <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Run your resume through digital twins of Workday, Greenhouse, and Lever to see your exact parsing results.</p>
+          </div>
+          <!-- Section Auditing -->
+          <div class="p-6 border rounded-2xl group hover:border-mist-400 dark:hover:border-indigo-800/50 hover:shadow-lg hover:shadow-indigo-500/5 transition-all bg-cream border-gray-100 dark:bg-graphite dark:border-slate-700/60">
+            <div class="mb-4 w-11 h-11 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+            </div>
+            <h4 class="text-base font-semibold mb-3 text-gray-900 dark:text-white">Section Auditing</h4>
+            <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Get granular, section-by-section critiques of your Professional Summary, Experience, Education, and Skills.</p>
+          </div>
+          <!-- Formatting Checks -->
+          <div class="p-6 border rounded-2xl group hover:border-mist-400 dark:hover:border-indigo-800/50 hover:shadow-lg hover:shadow-indigo-500/5 transition-all bg-cream border-gray-100 dark:bg-graphite dark:border-slate-700/60">
+            <div class="mb-4 w-11 h-11 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h4 class="text-base font-semibold mb-3 text-gray-900 dark:text-white">Formatting Checks</h4>
+            <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Validate font sizes, margins, bullet styles, and section headers against ATS formatting rules used by top recruiters.</p>
+          </div>
+          <!-- Quick Win Priorities -->
+          <div class="p-6 border rounded-2xl group hover:border-mist-400 dark:hover:border-indigo-800/50 hover:shadow-lg hover:shadow-indigo-500/5 transition-all bg-cream border-gray-100 dark:bg-graphite dark:border-slate-700/60">
+            <div class="mb-4 w-11 h-11 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+            </div>
+            <h4 class="text-base font-semibold mb-3 text-gray-900 dark:text-white">Quick Win Priorities</h4>
+            <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Get three color-coded improvement actions ranked by impact — know exactly what to fix first for the biggest score boost.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gradient divider -->
+  <div class="h-px bg-gradient-to-r from-transparent via-indigo-200 dark:via-indigo-800/50 to-transparent"></div>
+
+  <!-- ═══════════════════════════════════════════════════════  TRACK PROGRESS  ═══ -->
+  <section class="scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div class="text-center mb-14">
+        <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">Analytics Dashboard</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Track Your Progress</h2>
+        <p class="text-gray-500 dark:text-gray-400 max-w-lg mx-auto">Monitor score trends, analyze your most targeted roles, and see how your resume improves over time.</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+        <div class="bg-cream dark:bg-graphite border border-mist-400/80 dark:border-slate-700/60 rounded-xl p-4 text-center shadow-lifted">
+          <p class="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">24</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Total Analyses</p>
+        </div>
+        <div class="bg-cream dark:bg-graphite border border-mist-400/80 dark:border-slate-700/60 rounded-xl p-4 text-center shadow-lifted">
+          <p class="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">78</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Avg Score</p>
+        </div>
+        <div class="bg-cream dark:bg-graphite border border-mist-400/80 dark:border-slate-700/60 rounded-xl p-4 text-center shadow-lifted">
+          <p class="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">92</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Best Score</p>
+        </div>
+        <div class="bg-cream dark:bg-graphite border border-mist-400/80 dark:border-slate-700/60 rounded-xl p-4 text-center shadow-lifted">
+          <p class="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">5</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Resumes</p>
+        </div>
+      </div>
+
+      <!-- Mini trend chart -->
+      <div class="bg-cream dark:bg-graphite border border-mist-400/80 dark:border-slate-700/60 rounded-xl p-6 shadow-lifted">
+        <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">Score Trend</p>
+        <div class="flex items-end gap-2 h-24" id="trend-chart">
+          <!-- Bars injected by JS -->
+        </div>
+        <p class="text-xs text-gray-400 dark:text-gray-500 mt-3 text-center">Your last 10 analyses — watch your score improve</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════  PRICING  ═══ -->
+  <section id="pricing" class="scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div class="text-center mb-14">
+        <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">Simple Pricing</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Start Free, Grow Later</h2>
+        <p class="text-gray-500 dark:text-gray-400 max-w-lg mx-auto">Start free with 2 credits per month. Upgrade to Pro when you need more.</p>
+
+        <!-- Monthly / Annual toggle -->
+        <div class="mt-8 inline-flex items-center gap-3 bg-mist-50 dark:bg-charcoal border border-gray-200 dark:border-gray-700 rounded-full p-1">
+          <button id="billing-monthly" class="billing-toggle px-5 py-2 rounded-full text-sm font-semibold transition-all bg-indigo-600 text-white shadow-md" data-billing="monthly">Monthly</button>
+          <button id="billing-annual" class="billing-toggle px-5 py-2 rounded-full text-sm font-semibold transition-all text-gray-500 dark:text-gray-400 hover:text-gray-700" data-billing="annual">Annual <span class="text-xs text-green-600 dark:text-green-400 ml-1">Save 25%</span></button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-{{ plans|length }} gap-8" id="pricing-grid">
+        {% for plan in plans %}
+        <div class="p-10 sm:p-12 border rounded-2xl flex flex-col relative pricing-tilt {% if plan.is_popular %}bg-white border-indigo-500 shadow-xl shadow-indigo-500/25 ring-2 ring-indigo-500 scale-[1.02] dark:bg-charcoal dark:shadow-indigo-500/10 dark:ring-0{% else %}bg-white border-mist-300 dark:bg-jet dark:border-gray-800{% endif %}">
+          {% if plan.is_popular %}
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-indigo-600 text-white dark:bg-indigo-400 dark:text-black">Popular</div>
+          {% endif %}
+          <div class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">{{ plan.name }}</div>
+
+          <!-- Monthly price (shown by default) -->
+          <div class="price-monthly text-5xl sm:text-6xl font-bold mb-2">
+            {% if plan.monthly_original_price %}
+            <span class="text-lg text-gray-400 dark:text-gray-500 line-through mr-2">&#8377;{{ plan.monthly_original_price|floatformat:0 }}</span>
+            {% endif %}
+            <span class="text-gray-900 dark:text-white">&#8377;{{ plan.monthly_price|floatformat:0 }}</span>
+            <span class="text-xs opacity-50 font-sans ml-1">{% if plan.monthly_price == 0 %}/ forever{% else %}/ mo{% endif %}</span>
+          </div>
+
+          <!-- Annual price (hidden by default) -->
+          <div class="price-annual text-5xl sm:text-6xl font-bold mb-2 hidden">
+            {% if plan.annual_original_per_month %}
+            <span class="text-lg text-gray-400 dark:text-gray-500 line-through mr-2">&#8377;{{ plan.annual_original_per_month|floatformat:0 }}</span>
+            {% endif %}
+            <span class="text-gray-900 dark:text-white">&#8377;{{ plan.annual_per_month|floatformat:0 }}</span>
+            <span class="text-xs opacity-50 font-sans ml-1">{% if plan.annual_price == 0 %}/ forever{% else %}/ mo{% endif %}</span>
+          </div>
+
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">{{ plan.tagline }}</p>
+          <ul class="space-y-4 mb-10 flex-grow">
+            {% if plan.base_features %}
+            <li class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider pb-1">Everything in Free, plus:</li>
+            {% endif %}
+            {% for feature in plan.features.all %}
+            <li class="flex items-start gap-2.5 text-sm" title="{{ feature.tooltip }}">
+              <svg class="h-4 w-4 mt-0.5 shrink-0 {% if plan.is_popular %}text-indigo-600{% else %}text-indigo-500{% endif %} dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              <span class="text-gray-600 dark:text-gray-300">{{ feature.text }}</span>
+            </li>
+            {% endfor %}
+            {% if plan.base_features %}
+            <li class="border-t border-mist-400 dark:border-slate-700 pt-4 mt-2"></li>
+            <li class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider pb-1">Free plan includes:</li>
+            {% for feature in plan.base_features %}
+            <li class="flex items-start gap-2.5 text-sm" title="{{ feature.tooltip }}">
+              <svg class="h-4 w-4 mt-0.5 shrink-0 text-green-500 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              <span class="text-gray-500 dark:text-gray-400">{{ feature.text }}</span>
+            </li>
+            {% endfor %}
+            {% endif %}
+          </ul>
+          <a href="#" class="w-full py-3 text-center rounded-xl font-semibold text-sm transition-all border border-mist-400 text-gray-800 hover:bg-mist-50 dark:border-gray-800 dark:text-gray-100 dark:hover:bg-gray-800">{{ plan.cta_label }}</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gradient divider -->
+  <div class="h-px bg-gradient-to-r from-transparent via-indigo-200 dark:via-indigo-800/50 to-transparent"></div>
+
+  <!-- ═══════════════════════════════════════════════════  NEW FEATURES  ═══ -->
+  <section class="bg-mist-50 dark:bg-charcoal/30 border-y border-gray-100 dark:border-gray-800 scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div class="text-center mb-14">
+        <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">What's New</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Latest Features</h2>
+        <p class="text-gray-500 dark:text-gray-400 max-w-lg mx-auto">Powerful new tools now live to supercharge your job search.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- AI Resume Generator -->
+        <div class="relative p-6 border rounded-2xl bg-cream dark:bg-graphite border-mist-400/80 dark:border-slate-700/60 overflow-hidden shadow-lifted">
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">Live</div>
+          <div class="mb-4 w-11 h-11 rounded-xl flex items-center justify-center bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+          </div>
+          <h4 class="text-base font-semibold mb-3 text-gray-900 dark:text-white">AI Resume Generator</h4>
+          <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Automatically generate an improved, ATS-optimized resume from your analysis results. Choose from professional templates and download as PDF or DOCX.</p>
+        </div>
+        <!-- Smart Job Alerts -->
+        <div class="relative p-6 border rounded-2xl bg-cream dark:bg-graphite border-mist-400/80 dark:border-slate-700/60 overflow-hidden shadow-lifted">
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">Live</div>
+          <div class="mb-4 w-11 h-11 rounded-xl flex items-center justify-center bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" /></svg>
+          </div>
+          <h4 class="text-base font-semibold mb-3 text-gray-900 dark:text-white">Smart Job Alerts</h4>
+          <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">Link your resume and let our AI discover matching jobs across major platforms. Get daily or weekly alerts with relevance scores and match reasons.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════  FAQ  ═══ -->
+  <section id="faq" class="bg-mist-50 dark:bg-charcoal/30 border-y border-gray-100 dark:border-gray-800 scroll-mt-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div class="text-center mb-14">
+        <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">Support</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="space-y-3" id="faq-list">
+        <!-- FAQ items injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════  TESTIMONIALS  ═══ -->
+  {% if testimonials %}
+  <section class="scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div class="text-center mb-14">
+        <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">Testimonials</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Loved by Job Seekers</h2>
+        <p class="text-gray-500 dark:text-gray-400 max-w-lg mx-auto">See what our users have to say about their experience with i-Luffy.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for t in testimonials %}
+        <div class="p-6 border rounded-2xl bg-cream dark:bg-graphite border-mist-400/80 dark:border-slate-700/60 shadow-lifted flex flex-col">
+          <!-- Stars -->
+          <div class="flex gap-0.5 mb-4">
+            {% for _ in "12345"|make_list %}
+            {% if forloop.counter <= t.rating %}
+            <svg class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            {% else %}
+            <svg class="h-4 w-4 text-gray-300 dark:text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+            {% endif %}
+            {% endfor %}
+          </div>
+          <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400 mb-6 flex-grow">"{{ t.quote }}"</p>
+          <div class="flex items-center gap-3">
+            {% if t.avatar_url %}
+            <img src="{{ t.avatar_url }}" alt="{{ t.name }}" class="w-10 h-10 rounded-full object-cover" />
+            {% else %}
+            <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-sm">{{ t.name|first }}</div>
+            {% endif %}
+            <div>
+              <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ t.name }}</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">{{ t.role }}{% if t.company %}, {{ t.company }}{% endif %}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gradient divider -->
+  <div class="h-px bg-gradient-to-r from-transparent via-indigo-200 dark:via-indigo-800/50 to-transparent"></div>
+  {% endif %}
+
+  <!-- ═══════════════════════════════════════════════════════════  CTA  ═══ -->
+  <section class="bg-gradient-to-br from-indigo-600 to-purple-700 dark:from-indigo-700 dark:to-purple-800">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Optimize Your Resume?</h2>
+      <p class="text-indigo-100 text-lg max-w-xl mx-auto mb-10">Join thousands of job seekers who improved their resumes and landed interviews faster with i-Luffy.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#" class="w-full sm:w-auto text-center bg-white text-indigo-700 px-8 py-3.5 rounded-xl text-base font-semibold hover:bg-indigo-50 shadow-lg shadow-black/10 transition-all hover:shadow-xl hover:-translate-y-0.5">Get Started Free</a>
+        <a href="#pricing" class="w-full sm:w-auto text-center border border-white/30 text-white px-8 py-3.5 rounded-xl text-base font-semibold hover:bg-white/10 transition-all">View Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════  CONTACT FORM  ═══ -->
+  <section id="contact" class="scroll-mt-20">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div class="text-center mb-10">
+        <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">Get In Touch</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Contact Us</h2>
+        <p class="text-gray-500 dark:text-gray-400">Have questions, feedback, or partnership inquiries? We'd love to hear from you.</p>
+      </div>
+
+      <!-- Django messages -->
+      {% if messages %}
+      <div class="mb-6 space-y-2">
+        {% for msg in messages %}
+        <div class="px-4 py-3 rounded-lg text-sm font-medium {% if msg.tags == 'success' %}bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800{% else %}bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800{% endif %}">{{ msg }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <form id="contact-form" method="post" action="{% url 'main:index' %}#contact" class="bg-cream dark:bg-graphite border border-mist-400/80 dark:border-slate-700/60 rounded-2xl p-6 sm:p-8 space-y-5 shadow-lifted">
+        {% csrf_token %}
+        <input type="hidden" name="contact_submit" value="1" />
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Name</label>
+            <input type="text" name="name" placeholder="Your name" required class="w-full px-4 py-2.5 rounded-lg border border-mist-400 dark:border-slate-700 bg-cream dark:bg-charcoal text-gray-900 dark:text-gray-100 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500" />
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Email</label>
+            <input type="email" name="email" placeholder="you@example.com" required class="w-full px-4 py-2.5 rounded-lg border border-mist-400 dark:border-slate-700 bg-cream dark:bg-charcoal text-gray-900 dark:text-gray-100 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500" />
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Subject</label>
+          <input type="text" name="subject" placeholder="What is this about?" required class="w-full px-4 py-2.5 rounded-lg border border-mist-400 dark:border-slate-700 bg-cream dark:bg-charcoal text-gray-900 dark:text-gray-100 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500" />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Message</label>
+          <textarea rows="5" name="message" placeholder="How can we help?" required class="w-full px-4 py-2.5 rounded-lg border border-mist-400 dark:border-slate-700 bg-cream dark:bg-charcoal text-gray-900 dark:text-gray-100 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-colors resize-none placeholder:text-gray-400 dark:placeholder:text-gray-500"></textarea>
+        </div>
+        <button type="submit" class="w-full sm:w-auto bg-indigo-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:bg-indigo-500 shadow-md shadow-indigo-500/25 transition-all disabled:opacity-50">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+{% endblock %}

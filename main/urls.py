@@ -1,0 +1,11 @@
+from django.urls import path
+from . import views
+
+app_name = "main"
+
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("privacy/", views.privacy, name="privacy"),
+    path("terms/", views.terms, name="terms"),
+    path("data-policy/", views.data_policy, name="data_policy"),
+]

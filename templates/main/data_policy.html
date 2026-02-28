@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Data Usage Policy | i-Luffy{% endblock %}
+
+{% block content %}
+<section class="py-20 sm:py-24 px-4 sm:px-6">
+  <div class="max-w-3xl mx-auto">
+    <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">Legal</p>
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">Data Usage Policy</h1>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 space-y-6 text-sm leading-relaxed">
+
+      <p><strong>Effective Date:</strong> February 1, 2026</p>
+
+      <p>This policy explains how i-Luffy processes, stores, and protects the data you provide — specifically your resumes and job descriptions.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">1. What Data We Process</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Resume files</strong> (PDF) — parsed for text extraction and analysis.</li>
+        <li><strong>Job descriptions</strong> — used solely for keyword matching and scoring.</li>
+        <li><strong>Analysis results</strong> — scores, feedback, and AI-generated suggestions.</li>
+      </ul>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">2. Processing Environment</h2>
+      <p>All resume analysis is performed in <strong>isolated, ephemeral sandboxes</strong>. Each analysis session runs in its own container that is destroyed immediately after processing completes. No data persists in the processing environment beyond the session.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">3. AI Model Training</h2>
+      <p><strong>Your data is never used to train our AI models.</strong> We use pre-trained language models that are fine-tuned on synthetic and publicly available resume data only. Your personal resume content remains exclusively yours.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">4. Data Storage</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>Resume files and analysis results are stored encrypted (AES-256) on secure cloud infrastructure.</li>
+        <li>Data is stored in data centers compliant with SOC 2 Type II standards.</li>
+        <li>Backups are encrypted and rotated every 7 days.</li>
+      </ul>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">5. Data Deletion</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>You can delete individual analyses or resumes at any time from your dashboard.</li>
+        <li>Deleting your account permanently removes all associated data within 30 days.</li>
+        <li>Deleted data is purged from backups within 90 days.</li>
+      </ul>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">6. Third-Party Access</h2>
+      <p>No third party has access to your resume content. Our AI processing uses API calls to language model providers, but only anonymized text fragments are transmitted — never your full resume or personal identifiers.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">7. Shared Reports</h2>
+      <p>When you share an analysis report via link (Pro feature), the report is accessible only to users with the exact link. You can revoke shared links at any time. Shared reports do not include your original resume file.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">8. Contact</h2>
+      <p>For questions about how your data is handled, contact us at <a href="mailto:{{ contact_info.support_email }}" class="text-indigo-600 dark:text-indigo-400 hover:underline">{{ contact_info.support_email }}</a>.</p>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

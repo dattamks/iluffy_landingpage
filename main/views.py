@@ -1,0 +1,52 @@
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import Plan, Testimonial, ContactSubmission, ContactInfo
+
+
+def _common_context():
+    return {"contact_info": ContactInfo.load()}
+
+
+def index(request):
+    if request.method == "POST" and "contact_submit" in request.POST:
+        return _handle_contact(request)
+
+    ctx = _common_context()
+    plans = list(Plan.objects.prefetch_related("features").all())
+    # Attach base-plan features so higher-tier cards include them
+    if plans:
+        base_features = list(plans[0].features.all())
+        for plan in plans[1:]:
+            plan.base_features = base_features
+    ctx["plans"] = plans
+    ctx["testimonials"] = Testimonial.objects.filter(is_active=True)
+    return render(request, "main/index.html", ctx)
+
+
+def privacy(request):
+    return render(request, "main/privacy.html", _common_context())
+
+
+def terms(request):
+    return render(request, "main/terms.html", _common_context())
+
+
+def data_policy(request):
+    return render(request, "main/data_policy.html", _common_context())
+
+
+def _handle_contact(request):
+    name = request.POST.get("name", "").strip()
+    email = request.POST.get("email", "").strip()
+    subject = request.POST.get("subject", "").strip()
+    message = request.POST.get("message", "").strip()
+
+    if not all([name, email, subject, message]):
+        messages.error(request, "Please fill in all fields.")
+        return redirect("main:index")
+
+    ContactSubmission.objects.create(
+        name=name, email=email, subject=subject, message=message,
+    )
+    messages.success(request, "Message sent! We'll get back to you shortly.")
+    return redirect("main:index")

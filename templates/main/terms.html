@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Terms of Service | i-Luffy{% endblock %}
+
+{% block content %}
+<section class="py-20 sm:py-24 px-4 sm:px-6">
+  <div class="max-w-3xl mx-auto">
+    <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">Legal</p>
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">Terms of Service</h1>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-gray-600 dark:text-gray-400 space-y-6 text-sm leading-relaxed">
+
+      <p><strong>Effective Date:</strong> February 1, 2026</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">1. Acceptance of Terms</h2>
+      <p>By accessing or using i-Luffy ("the Service"), you agree to be bound by these Terms of Service. If you do not agree, you may not use the Service.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">2. Description of Service</h2>
+      <p>i-Luffy provides AI-powered resume analysis, ATS scoring, keyword intelligence, and content rewriting. The Service is available through free and paid subscription tiers.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">3. Account Registration</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>You must provide accurate and complete information when creating an account.</li>
+        <li>You are responsible for maintaining the security of your account credentials.</li>
+        <li>You must be at least 16 years old to use the Service.</li>
+      </ul>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">4. Credits &amp; Subscriptions</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>Free accounts receive 2 credits per month, replenished on your billing anniversary.</li>
+        <li>Pro subscriptions are billed monthly or annually as selected at purchase.</li>
+        <li>Unused credits do not roll over to the next billing period.</li>
+        <li>Refunds are available within 7 days of purchase if no credits have been used.</li>
+      </ul>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">5. Acceptable Use</h2>
+      <p>You agree not to:</p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>Upload resumes or content belonging to others without their consent.</li>
+        <li>Attempt to reverse-engineer, scrape, or abuse the AI engine.</li>
+        <li>Use the Service for any unlawful purpose.</li>
+      </ul>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">6. Intellectual Property</h2>
+      <p>You retain ownership of all resumes you upload. AI-generated suggestions and rewrites are licensed to you for personal and professional use. The i-Luffy brand, code, and AI models remain our property.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">7. Limitation of Liability</h2>
+      <p>The Service is provided "as is." We do not guarantee that using i-Luffy will result in job offers or interviews. Our liability is limited to the amount you paid for the Service in the 12 months preceding any claim.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">8. Termination</h2>
+      <p>We may suspend or terminate your account if you violate these Terms. You may delete your account at any time from your dashboard.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">9. Changes to Terms</h2>
+      <p>We may update these Terms from time to time. Continued use after changes constitutes acceptance of the new Terms.</p>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">10. Contact</h2>
+      <p>Questions about these Terms? Contact us at <a href="mailto:{{ contact_info.support_email }}" class="text-indigo-600 dark:text-indigo-400 hover:underline">{{ contact_info.support_email }}</a>.</p>
+
+    </div>
+  </div>
+</section>
+{% endblock %}
