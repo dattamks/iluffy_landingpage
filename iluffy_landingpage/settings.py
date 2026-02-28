@@ -129,8 +129,24 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STORAGE = {
+STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+WHITENOISE_MAX_AGE = 31536000  # 1 year — safe with fingerprinted filenames
+
+
+# ─── Security headers ───────────────────────────────────────────────
+# Only enable strict security in production (Railway)
+if not DEBUG:
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    # Railway handles SSL termination, so don't redirect at app level
+    SECURE_SSL_REDIRECT = False
+    X_FRAME_OPTIONS = "SAMEORIGIN"

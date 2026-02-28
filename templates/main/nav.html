@@ -1,5 +1,5 @@
 <!-- ═══════════════════════════════════════════════════════════════════  NAV  ═══ -->
-<nav id="main-nav" class="sticky top-0 z-50 bg-cream/80 dark:bg-jet/90 backdrop-blur-lg border-b border-gray-100 dark:border-gray-800 transition-all duration-300 h-[72px]" role="banner">
+<nav id="main-nav" class="sticky top-0 z-50 bg-cream/80 dark:bg-jet/90 backdrop-blur-lg border-b border-gray-100 dark:border-gray-800 transition-all duration-300 h-[72px]" role="navigation" aria-label="Main navigation">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
 
     <!-- Logo -->
@@ -16,14 +16,14 @@
     <div class="flex items-center gap-2 sm:gap-3">
       <!-- Mobile hamburger -->
       <button id="hamburger-btn" class="md:hidden p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-mist-100 dark:hover:bg-charcoal transition-colors" aria-label="Toggle menu" aria-expanded="false">
-        <svg id="hamburger-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
-        <svg id="hamburger-close" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        <svg id="hamburger-open" class="h-5 w-5" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+        <svg id="hamburger-close" class="h-5 w-5 hidden" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
 
       <!-- Theme toggle -->
       <button id="theme-btn" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-mist-100 dark:hover:bg-charcoal transition-colors theme-toggle-spin" aria-label="Toggle theme">
-        <svg id="icon-sun" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 7.66l-.71-.71M4.05 4.05l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-        <svg id="icon-moon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        <svg id="icon-sun" class="h-5 w-5 hidden" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 7.66l-.71-.71M4.05 4.05l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+        <svg id="icon-moon" class="h-5 w-5" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
       </button>
 
       <a href="{{ site.login_url }}" class="hidden sm:inline-flex text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-3 py-2">{{ site.nav_login_label }}</a>

@@ -8,5 +8,6 @@ dist/
 .env
 .venv/
 venv/
+node_modules/
 sqlite_dump.json
 main_data.json
