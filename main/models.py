@@ -6,19 +6,39 @@ class Plan(models.Model):
 
     name = models.CharField(max_length=50)  # e.g. "Free", "Pro"
     tagline = models.CharField(max_length=200, blank=True)
-    monthly_price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    annual_price = models.DecimalField(
+
+    credits_per_month = models.PositiveIntegerField(
+        default=0, help_text="Number of credits included per month",
+    )
+
+    # Pricing ─────────────────────────────────────────────────────
+    mrp_monthly = models.DecimalField(
         max_digits=8, decimal_places=2, default=0,
-        help_text="Total annual price (shown as per-month equivalent on the card)",
+        help_text="Original (MRP) monthly price — shown as strike-through if different from discounted",
     )
-    monthly_original_price = models.DecimalField(
-        max_digits=8, decimal_places=2, null=True, blank=True,
-        help_text="Strike-through original monthly price (leave blank if none)",
+    price_monthly = models.DecimalField(
+        max_digits=8, decimal_places=2, default=0,
+        help_text="Discounted monthly price actually charged",
     )
-    annual_original_price = models.DecimalField(
-        max_digits=8, decimal_places=2, null=True, blank=True,
-        help_text="Strike-through original annual price (leave blank if none)",
+    mrp_annual = models.DecimalField(
+        max_digits=8, decimal_places=2, default=0,
+        help_text="Original (MRP) total annual price (mrp_monthly × 12)",
     )
+    price_annual = models.DecimalField(
+        max_digits=8, decimal_places=2, default=0,
+        help_text="Discounted total annual price actually charged",
+    )
+
+    # Features (JSON) ─────────────────────────────────────────────
+    features = models.JSONField(
+        default=list, blank=True,
+        help_text=(
+            'List of features. Each item: {"name": "Feature name", "included": true/false}. '
+            'Example: [{"name": "ATS score breakdown", "included": true}, '
+            '{"name": "Priority AI processing", "included": false}]'
+        ),
+    )
+
     is_popular = models.BooleanField(default=False)
     cta_label = models.CharField(max_length=60, default="Get Started")
     cta_url_type = models.CharField(
@@ -34,32 +54,46 @@ class Plan(models.Model):
     def __str__(self):
         return self.name
 
+    # Computed properties ─────────────────────────────────────────
     @property
-    def annual_per_month(self):
-        if self.annual_price:
-            return round(self.annual_price / 12, 2)
+    def monthly_discount_percent(self):
+        """Percentage saved on the monthly price vs MRP."""
+        if self.mrp_monthly and self.mrp_monthly > self.price_monthly:
+            return round(
+                (1 - float(self.price_monthly) / float(self.mrp_monthly)) * 100
+            )
         return 0
 
     @property
-    def annual_original_per_month(self):
-        if self.annual_original_price:
-            return round(self.annual_original_price / 12, 2)
+    def annual_discount_percent(self):
+        """Percentage saved on the annual price vs MRP."""
+        if self.mrp_annual and self.mrp_annual > self.price_annual:
+            return round(
+                (1 - float(self.price_annual) / float(self.mrp_annual)) * 100
+            )
+        return 0
+
+    @property
+    def annual_per_month(self):
+        """Discounted annual price divided by 12."""
+        if self.price_annual:
+            return round(self.price_annual / 12, 2)
+        return 0
+
+    @property
+    def mrp_annual_per_month(self):
+        """MRP annual price divided by 12."""
+        if self.mrp_annual:
+            return round(self.mrp_annual / 12, 2)
         return None
 
+    @property
+    def has_monthly_discount(self):
+        return self.mrp_monthly and self.mrp_monthly > self.price_monthly
 
-class PlanFeature(models.Model):
-    """Individual feature bullet for a Plan."""
-
-    plan = models.ForeignKey(Plan, on_delete=models.CASCADE, related_name="features")
-    text = models.CharField(max_length=200)
-    tooltip = models.CharField(max_length=300, blank=True)
-    order = models.PositiveIntegerField(default=0)
-
-    class Meta:
-        ordering = ["order"]
-
-    def __str__(self):
-        return f"{self.plan.name} – {self.text}"
+    @property
+    def has_annual_discount(self):
+        return self.mrp_annual and self.mrp_annual > self.price_annual
 
 
 class Testimonial(models.Model):

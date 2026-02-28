@@ -17,8 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
+from django.views.static import serve
+from pathlib import Path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("sitemap.xml", serve, {"document_root": Path(__file__).resolve().parent.parent / "static", "path": "sitemap.xml"}, name="sitemap"),
     path("", include("main.urls")),
 ]

@@ -1,17 +1,23 @@
 from django.contrib import admin
-from .models import Plan, PlanFeature, Testimonial, ContactSubmission, ContactInfo, SiteConfig
-
-
-class PlanFeatureInline(admin.TabularInline):
-    model = PlanFeature
-    extra = 1
+from .models import Plan, Testimonial, ContactSubmission, ContactInfo, SiteConfig
 
 
 @admin.register(Plan)
 class PlanAdmin(admin.ModelAdmin):
-    list_display = ["name", "monthly_price", "annual_price", "is_popular", "order"]
+    list_display = ["name", "credits_per_month", "price_monthly", "mrp_monthly", "price_annual", "mrp_annual", "is_popular", "order"]
     list_editable = ["order", "is_popular"]
-    inlines = [PlanFeatureInline]
+    fieldsets = [
+        (None, {"fields": ["name", "tagline", "credits_per_month", "order"]}),
+        ("Pricing", {"fields": [
+            ("mrp_monthly", "price_monthly"),
+            ("mrp_annual", "price_annual"),
+        ]}),
+        ("Features (JSON)", {
+            "fields": ["features"],
+            "description": 'Each item: {"name": "Feature name", "included": true/false}',
+        }),
+        ("CTA", {"fields": ["cta_label", "cta_url_type", "is_popular"]}),
+    ]
 
 
 @admin.register(Testimonial)

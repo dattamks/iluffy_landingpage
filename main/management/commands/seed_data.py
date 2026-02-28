@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from main.models import Plan, PlanFeature, Testimonial, ContactInfo, SiteConfig
+from main.models import Plan, Testimonial, ContactInfo, SiteConfig
 
 
 class Command(BaseCommand):
@@ -17,51 +17,65 @@ class Command(BaseCommand):
             self.stdout.write("Plans already exist — skipping.")
             return
 
+        all_features = [
+            "ATS score breakdown",
+            "Keyword analysis",
+            "Section feedback",
+            "AI sentence rewrites",
+            "PDF report download",
+            "Compare analyses",
+            "Priority AI processing",
+            "Share reports via link",
+            "Smart Job Alerts",
+            "AI Resume Generator",
+        ]
+
+        free_included = {
+            "ATS score breakdown",
+            "Keyword analysis",
+            "Section feedback",
+            "AI sentence rewrites",
+            "PDF report download",
+            "Compare analyses",
+        }
+
         # ── Free Plan ──────────────────────────────────────────────
-        free = Plan.objects.create(
+        Plan.objects.create(
             name="Free",
             tagline="Get started with AI resume analysis — no credit card needed.",
-            monthly_price=0,
-            annual_price=0,
+            credits_per_month=2,
+            mrp_monthly=0,
+            price_monthly=0,
+            mrp_annual=0,
+            price_annual=0,
+            features=[
+                {"name": f, "included": f in free_included}
+                for f in all_features
+            ],
             is_popular=False,
             cta_label="Get Started Free",
             cta_url_type="register",
             order=1,
         )
-        free_features = [
-            ("2 credits per month", "Each analysis costs 1 credit — get 2 free credits every month"),
-            ("ATS score breakdown", "Scored against Generic ATS, Workday, and Greenhouse parsers"),
-            ("Keyword analysis", "See matched, missing, and recommended keywords from the job description"),
-            ("Section feedback", "Per-section scores and detailed improvement suggestions"),
-            ("AI sentence rewrites", "AI rewrites generic bullets into quantified achievements"),
-            ("PDF report download", "Download a comprehensive PDF report of your analysis"),
-            ("Compare analyses", "View up to 5 analyses side-by-side to track improvement"),
-        ]
-        for i, (text, tooltip) in enumerate(free_features, 1):
-            PlanFeature.objects.create(plan=free, text=text, tooltip=tooltip, order=i)
 
         # ── Pro Plan ───────────────────────────────────────────────
-        pro = Plan.objects.create(
+        Plan.objects.create(
             name="Pro",
             tagline="For active job seekers who need every edge.",
-            monthly_price=399,
-            monthly_original_price=599,
-            annual_price=3990,           # ₹399/mo × 10
-            annual_original_price=7188,  # ₹599/mo × 12
+            credits_per_month=25,
+            mrp_monthly=599,
+            price_monthly=399,
+            mrp_annual=7188,    # 599 × 12
+            price_annual=3990,  # 399 × 10
+            features=[
+                {"name": f, "included": True}
+                for f in all_features
+            ],
             is_popular=True,
             cta_label="Be a Pro",
             cta_url_type="billing",
             order=2,
         )
-        pro_features = [
-            ("25 credits per month", "25 credits auto-replenished monthly — plus top-up packs available"),
-            ("Priority AI processing", "Skip the queue with dedicated processing priority"),
-            ("Share reports via link", "Generate a public link to share your analysis with mentors or friends"),
-            ("Smart Job Alerts", "AI-powered job matching with daily or weekly alerts based on your resume"),
-            ("AI Resume Generator", "Generate ATS-optimized resumes from your analysis results"),
-        ]
-        for i, (text, tooltip) in enumerate(pro_features, 1):
-            PlanFeature.objects.create(plan=pro, text=text, tooltip=tooltip, order=i)
 
         self.stdout.write(self.style.SUCCESS("  ✓ Plans seeded"))
 

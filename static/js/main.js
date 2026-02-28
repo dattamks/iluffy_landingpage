@@ -248,20 +248,26 @@
     const monthlyPrices = document.querySelectorAll('.price-monthly')
     const annualPrices  = document.querySelectorAll('.price-annual')
 
+    const activeClasses   = ['bg-indigo-600', 'text-white', 'shadow-md']
+    const inactiveClasses = ['text-gray-500', 'dark:text-gray-400', 'bg-transparent']
+
+    function resetBtn(btn) {
+      activeClasses.forEach(c => btn.classList.remove(c))
+      inactiveClasses.forEach(c => btn.classList.remove(c))
+    }
+
     function showMonthly() {
-      btnMonthly.classList.add('bg-white', 'dark:bg-slate-700', 'shadow-sm', 'text-gray-900', 'dark:text-white')
-      btnMonthly.classList.remove('text-gray-500', 'dark:text-gray-400')
-      btnAnnual.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow-sm', 'text-gray-900', 'dark:text-white')
-      btnAnnual.classList.add('text-gray-500', 'dark:text-gray-400')
+      resetBtn(btnMonthly); resetBtn(btnAnnual)
+      activeClasses.forEach(c => btnMonthly.classList.add(c))
+      inactiveClasses.forEach(c => btnAnnual.classList.add(c))
       monthlyPrices.forEach(el => el.classList.remove('hidden'))
       annualPrices.forEach(el => el.classList.add('hidden'))
     }
 
     function showAnnual() {
-      btnAnnual.classList.add('bg-white', 'dark:bg-slate-700', 'shadow-sm', 'text-gray-900', 'dark:text-white')
-      btnAnnual.classList.remove('text-gray-500', 'dark:text-gray-400')
-      btnMonthly.classList.remove('bg-white', 'dark:bg-slate-700', 'shadow-sm', 'text-gray-900', 'dark:text-white')
-      btnMonthly.classList.add('text-gray-500', 'dark:text-gray-400')
+      resetBtn(btnMonthly); resetBtn(btnAnnual)
+      activeClasses.forEach(c => btnAnnual.classList.add(c))
+      inactiveClasses.forEach(c => btnMonthly.classList.add(c))
       annualPrices.forEach(el => el.classList.remove('hidden'))
       monthlyPrices.forEach(el => el.classList.add('hidden'))
     }
